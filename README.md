@@ -103,6 +103,11 @@ public class UserController {
 ````
 最后，访问http://localhost:8080/swagger-ui.html 即可看到你的杰作
 
+最终效果如下:
+![](screenshot/swagger1.png)
+
+![](screenshot/swagger2.png)
+
 ## 具体完整demo见github仓库
 https://github.com/forgot2015/SpingBootAndSwaggerDemo
 
