@@ -112,3 +112,29 @@ https://www.jianshu.com/p/b0b19368e4a8
 https://blog.csdn.net/xupeng874395012/article/details/68946676
 
 
+## PS：
+笔者期间遇到一个问题，访问http://localhost:8080/swagger-ui.html 提示404
+网友答案是创建一个类WebMvcConfigurer，继承于WebMvcConfigurerAdapter，
+然后配置两个方法
+````
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+//        配置swagger文件路径
+        registry.addRedirectViewController("/api/v2/api-docs", "/v2/api-docs");
+        registry.addRedirectViewController("/api/swagger-resources/configuration/ui", "/swagger-resources/configuration/ui");
+        registry.addRedirectViewController("/api/swagger-resources/configuration/security", "/swagger-resources/configuration/security");
+        registry.addRedirectViewController("/api/swagger-resources", "/swagger-resources");
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        配置swagger文件
+        registry.addResourceHandler("/api/swagger-ui.html**").addResourceLocations("classpath:/META-INF/resources/swagger-ui.html");
+        registry.addResourceHandler("/api/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+````
+
+然后用http://localhost:8080/api/swagger-ui.html来访问文档地址
+
+
